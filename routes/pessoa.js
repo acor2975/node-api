@@ -18,8 +18,7 @@ router.get('/:id', async function (req, res) {
 })
 
 router.post('/', async function (req, res) {
-    var nome = req.body.nome
-    var pessoa = await PessoaController.criar({ nome: nome })
+    var pessoa = await PessoaController.criar(req.body)
     var response = {
         message: 'Pessoa criada com sucesso!',
         data: pessoa
@@ -29,9 +28,8 @@ router.post('/', async function (req, res) {
 
 router.put('/:id', async function (req, res) {
     var id = req.params.id
-    var nome = req.body.nome
     try {
-        var pessoa = await PessoaController.atualizar({ id: id, nome: nome })
+        var pessoa = await PessoaController.atualizar(id, req.body)
         var response = {
             message: 'Pessoa atualizada com sucesso!',
             data: pessoa

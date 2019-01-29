@@ -8,14 +8,13 @@ function encontrar (id) {
     return Pessoa.findById(id)
 }
 
-async function criar (pessoa) {
-    var pessoa = new Pessoa({ nome: pessoa.nome })
-    await pessoa.save()
-    return pessoa
+function criar (pessoa) {
+    var model = new Pessoa(pessoa)
+    return model.save()
 }
 
-function atualizar (pessoa) {
-    return Pessoa.findByIdAndUpdate(pessoa.id, { nome: pessoa.nome }, { new: true })
+function atualizar (id, pessoa) {
+    return Pessoa.findByIdAndUpdate(id, pessoa, { new: true })
 }
 
 function remover (id) {
